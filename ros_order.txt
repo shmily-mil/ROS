@@ -1,0 +1,86 @@
+仿真
+1.ctrl+alt+T:
+2.roscore
+3.roslaunch wpr_simulation wpb_simple.launch
+4.rosrun rpt_robot_steeing rqt_robot_steeing
+
+乌龟
+1.ctrl+alt+t
+2.roscore
+3.rosrun turtlesim turtlesim_node
+4.rosrun turtlesim turtle_teleop_key
+
+乌龟
+1.编写launch文件
+2.source ./devel/setup.bash
+3.roslaunch package launch
+
+工作空间的创建
+1.mkdir -p catkin_ws/src
+2.cd catkin_ws
+3.catkin_make 编译
+
+工作包的创建
+1.cd src
+2.catkin_create_pkg 自定义ros名字 roscpp rospy std_msgs
+
+编写python源文件
+1.指定解释器，#! /usr/bin/env python
+2.导包，import rospy
+3.编写主入口，if __name__ == "__main__":
+4.初始化ros节点，rospy.init_node("hello_p")
+5.输出日志，rospy.loginfo("hello world by python")
+添加可执行权限 
+6.chmod +x helloworld.py
+编辑ros包下的CMakeLists.txt文件
+7.修改CMakeLists.txt中install中为自己的python源码
+8.cd catkin_ws
+9.catkin_make
+10.roscore
+11.source ./devel/setup.bash 刷新环境变量
+12.rosrun hello_word helloworld.py , rosrun package名字 scripts中的python源文件
+
+vscode编译基本步骤
+1.mkdir -p 工作空间名/src
+2.cd 工作空间名
+3.catkin_make
+4.cd 工作空间名
+5.code .
+6.ctrl+shift+b进行编译,选择catkin_make:build,然后修改.vscode/tasks.json文件
+7.右击src,create catkin package,创建package,并添加依赖roscpp rospy std_msgs
+8.在scripts文件夹下添加python文件，并添加可执行权限x
+9.配置CMakeLists.txt
+10.在终端中执行，roscore
+11.在终端中执行，cd ~/工作空间，source ./devel/setup.bash rosrun
+10.ctrl+shift+b,编译执行
+
+
+launch文件
+1.选定功能包右击，添加launch文件
+2.选定launch文件夹右击，添加launch文件
+3.编辑launch文件内容
+	<launch>
+		<node pkg="helloworld" type="demo_hello" name="hello" output="screen"/>
+		<node pkg="turtlesim" type="turtlesim_node" name="t1"/>
+		<node pkg="turtlesim" type="turtle_teleop_key" name="key1">
+	</launch>
+	node,包含的某个节点
+	pkg,功能包
+	type,被运行的节点文件
+	name,为节点命名
+	output,设置日志的输出目录
+4.运行launch文件，roslaunch 包名 launch文件名
+5.运行结果：一次运行多个节点
+
+计算图
+1.rosrun rqt_graph rqt_graph
+
+
+
+
+
+
+
+
+
+
