@@ -1,0 +1,49 @@
+roslaunch rikirobot bringup.launch
+
+基础移动
+roslaunch rikibot bringup.launch
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+
+IMU校正
+roslaunch rikibot bringup.launch
+~/catkin_ws/src/rikibot_project/rikibot/param/imu rosrun imu_calib do_calib
+
+angular
+roslaunch rikibot bringup.launch
+rosrun rikibot_nav calibrate_angular.py
+rosrun rqt_reconfigure rqt_reconfigure
+bringup.launch文件中angular_scale修改比列系数
+
+linear
+roslaunch rikibot bringup.launch
+rosrun rikibot_nav calibrate_linear.py
+rosrun rqt_reconfigure rqt_reconfigure
+bringup.launch文件中linear_scale修改比例系数
+
+slam
+roslaunch rikibot bringup.launch
+roslaunch rikibot lidar_slam.launch
+rviz  ~/catkin_ws/src/rikibot_project/rikibot/rviz/slam.rviz
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+~/catkin_ws/src/rikibot_project/rikibot/maps ls  ./map.  ./map.sh
+
+auto_slam
+roslaunch rikibot bringup.launch
+roslaunch rikibot auto_slam.launch
+./map.sh
+
+避障
+roslaunch rikibot bringup.launch
+roslaunch rikibot lidar_slam.launch
+rviz     打开slam.rviz
+roslaunch teleop_twist_keyboard teleop_twist_keyboard.launch
+
+roslaunch rikibot bringup.launch
+roslaunch rikibot navigate.launch
+rviz   打开navigate.rviz
+navfn
+
+
+
+
+
